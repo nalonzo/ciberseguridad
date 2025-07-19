@@ -1,0 +1,120 @@
+version: '3.8'
+
+services:
+  kali:
+    build: ./kali
+    container_name: kali_lab
+    hostname: kali-lab
+    networks:
+      pentest-net:
+        aliases:
+          - kali
+    volumes:
+      - ./kali_lab_data:/home/pentester/lab_data
+    environment:
+      - TZ=America/Mexico_City
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 4GB
+    tty: true
+    stdin_open: true
+    privileged: true
+
+  dvwa:
+    build: ./dvwa
+    container_name: dvwa
+    networks:
+      pentest-net:
+        aliases:
+          - dvwa
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
+
+  juiceshop:
+    build: ./juiceshop
+    container_name: juiceshop
+    networks:
+      pentest-net:
+        aliases:
+          - juiceshop
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./juiceshop/config:/juiceshop/config
+      - ./juiceshop/data:/juiceshop/data
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+
+  metasploitable2:
+    build: ./metasploitable2
+    container_name: metasploitable2
+    networks:
+      pentest-net:
+          aliases:
+            - metasploitable2
+    ports:
+      - "21:21"
+      - "22:22"
+      - "23:23"
+      - "80:80"
+      - "4445:445"
+      - "3306:3306"
+
+  webgoat:
+     build: ./webgoat
+     container_name: webgoat
+     networks:
+       pentest-net:
+         aliases:
+           - webgoat
+     ports:
+       - "8082:8080"
+       - "9090:9090"
+     environment:
+       - TZ=America/Mexico_City
+     restart: unless-stopped
+
+     volumes:
+        - webgoat_data:/home/webgoat/.webgoat-8.0.0
+        - webwolf_data:/home/webgoat/.webwolf-8.0.0
+
+  pwnedsql:
+     build: ./pwnedsql
+     container_name: pwnedsql
+     networks:
+       pentest-net:
+         aliases:
+           - pwnedsql
+     ports:
+       - "3307:3306"
+     environment:
+       - TZ=America/Mexico_City
+       - MYSQL_ROOT_PASSWORD=root123
+       - MYSQL_DATABASE=vulnerable_db
+       - MYSQL_USER=victim_user
+       - MYSQL_PASSWORD=weakpassword
+     restart: unless-stopped
+
+     volumes:
+       - pwnedsql_data:/var/lib/mysql
+       - ./pwnedsql/my.cnf:/etc/mysql/conf.d/my.cnf
+
+networks:
+  pentest-net:
+    driver: bridge
+    internal: false
+
+volumes:
+  webgoat_data:
+    driver: local
+  webwolf_data:
+    driver: local
+  pwnedsql_data:
+    driver: local
+
+

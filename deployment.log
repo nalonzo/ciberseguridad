@@ -1,0 +1,322 @@
+Inicio de despliegue: Fri Jul 18 08:38:04 PM CST 2025
+Stopping pwnedsql        ... 
+Stopping webgoat         ... 
+Stopping metasploitable2 ... 
+Stopping dvwa            ... 
+Stopping juiceshop       ... 
+Stopping kali_lab        ... 
+Stopping pwnedsql        ... done
+Stopping juiceshop       ... done
+Stopping kali_lab        ... done
+Stopping webgoat         ... done
+Stopping metasploitable2 ... done
+Stopping dvwa            ... done
+Removing pwnedsql        ... 
+Removing webgoat         ... 
+Removing metasploitable2 ... 
+Removing dvwa            ... 
+Removing juiceshop       ... 
+Removing kali_lab        ... 
+Removing pwnedsql        ... done
+Removing juiceshop       ... done
+Removing kali_lab        ... done
+Removing dvwa            ... done
+Removing webgoat         ... done
+Removing metasploitable2 ... done
+Removing network kali-lab_pentest-net
+Removing volume kali-lab_webgoat_data
+Removing volume kali-lab_webwolf_data
+Removing volume kali-lab_pwnedsql_data
+Error: No such network: pentest-net
+Building kali
+#1 [internal] load build definition from Dockerfile
+#1 sha256:02edb488c79815bfe75989d78091628af89b9f69620263bc269e86a5eb3e4f62
+#1 transferring dockerfile: 1.36kB done
+#1 DONE 0.0s
+
+#3 [auth] kalilinux/kali-rolling:pull token for registry-1.docker.io
+#3 sha256:2cc4d72f9fe1d5bb6e27e8ad3bde240a4b65e63ae406cc1a0292980d31dd26ec
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/kalilinux/kali-rolling:latest
+#2 sha256:2b6eab8736da091d0f8e16be3813b2bfda397ed035593d8b3b7d3fe4a8ad18d9
+#2 DONE 0.9s
+
+#4 [internal] load .dockerignore
+#4 sha256:2c7f6494f953cc5899efa942e6f7ddef4f74761126bfc5f7c1267dd82f55650b
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#9 [1/5] FROM docker.io/kalilinux/kali-rolling:latest@sha256:bf140074eb035fcd9d4b5827e973e09662a6a73ff62835f9b7cafc3b51922349
+#9 sha256:e5023ddb8dafde1f2cce294ce7501a4aeed519a3b0562441c73300d86255fbe2
+#9 resolve docker.io/kalilinux/kali-rolling:latest@sha256:bf140074eb035fcd9d4b5827e973e09662a6a73ff62835f9b7cafc3b51922349 0.0s done
+#9 DONE 0.0s
+
+#8 [2/5] RUN echo "Configurando Kali Linux ..." &&     apt-get update -y &&     apt-get full-upgrade -y &&     apt-get install -y --no-install-recommends     iputils-ping     netcat-traditional     nmap     metasploit-framework     kali-tools-exploitation     hydra     sqlmap     wireshark     john     git     python3-pip     python3-dev     libffi-dev     libssl-dev     default-jdk     wget     && apt-get clean     && rm -rf /var/lib/apt/lists/*
+#8 sha256:7eb8255869049c9c74409aa0209ea385b90896824aab117a2883e15b547c97b2
+#8 CACHED
+
+#7 [3/5] RUN mkdir -p /opt/burpsuite &&     cd /opt/burpsuite &&     wget -q "https://portswigger.net/burp/releases/download?product=community&version=latest&type=Jar" -O burpsuite.jar &&     echo '#!/bin/sh\njava -jar /opt/burpsuite/burpsuite.jar' > /usr/local/bin/burpsuite &&     chmod +x /usr/local/bin/burpsuite
+#7 sha256:6af77a081846bf1810adaf3e55717d991b55b6cedb80590cda9703e5f38f38f8
+#7 CACHED
+
+#6 [4/5] RUN useradd -m -s /bin/bash pentester &&     echo 'pentester:PasswordSeguro123!' | chpasswd &&     chmod 700 /home/pentester &&     mkdir -p /home/pentester/lab_data &&     chown pentester:pentester /home/pentester/lab_data
+#6 sha256:55a76e620e75de606699d714056c7ea554b23942c8298bf23245ff8ef96ce6f6
+#6 CACHED
+
+#5 [5/5] WORKDIR /home/pentester
+#5 sha256:8e1d98575fe1ea12a3bfe07d410ef009487553804f925b5e6d7cb3a5f92d0a39
+#5 CACHED
+
+#10 exporting to image
+#10 sha256:22c5fa307617d3435c8484cb1ee6786f427aa70b303a2b305cab5f13b5a2ec1b
+#10 exporting layers done
+#10 exporting manifest sha256:1b3d70f987f0e28a42c8c0176fee358ea5d7b3f60242ce7300dc9b10f7791bd6 done
+#10 exporting config sha256:1f992a521f5e0832f32837e1d4470c2157b1651cc7a65d823b9d9675b536cc09 done
+#10 naming to docker.io/library/kali-lab_kali:latest
+#10 naming to docker.io/library/kali-lab_kali:latest done
+#10 unpacking to docker.io/library/kali-lab_kali:latest done
+#10 DONE 0.0s
+Building dvwa
+#1 [internal] load build definition from Dockerfile
+#1 sha256:b01d842af8dcd0f2752799364f75a3c6252d5b0ca1d939b61bdb36e3b3e6286d
+#1 transferring dockerfile: 176B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/vulnerables/web-dvwa:latest
+#2 sha256:372a274a5cdff44f6b93e5d1b04a0fdbc34f0feb318573ae811b47d6b8d81b67
+#2 ...
+
+#3 [auth] vulnerables/web-dvwa:pull token for registry-1.docker.io
+#3 sha256:bc7c592a6cccb819c97fe6fd11e526af8c66378fe00080af9495028e4d7db2ed
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/vulnerables/web-dvwa:latest
+#2 sha256:372a274a5cdff44f6b93e5d1b04a0fdbc34f0feb318573ae811b47d6b8d81b67
+#2 DONE 0.9s
+
+#4 [internal] load .dockerignore
+#4 sha256:f4dcb29da633d78203de8f26360b683732db08e864f8eb366c54cbc70d79cb3b
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/1] FROM docker.io/vulnerables/web-dvwa:latest@sha256:dae203fe11646a86937bf04db0079adef295f426da68a92b40e3b181f337daa7
+#5 sha256:71c1c7096cec4b6a5502b6841a6568246be64df15e002a4e91aa3bc86a085cf1
+#5 resolve docker.io/vulnerables/web-dvwa:latest@sha256:dae203fe11646a86937bf04db0079adef295f426da68a92b40e3b181f337daa7 0.0s done
+#5 CACHED
+
+#6 exporting to image
+#6 sha256:051e660aa6b2017452adfbefd4caa8ca4738aadde19db9099191c6b89cdd75e0
+#6 exporting layers done
+#6 exporting manifest sha256:6cdf0174ac7a5b2a492674a0ae9aa531e0e128fd8499a1f40782fbc8cd5343a9 done
+#6 exporting config sha256:6801ad1d44ce7eef44c0181c1b6958ad30cc6eda253e4d3f25b5d7958441cb74 done
+#6 naming to docker.io/library/kali-lab_dvwa:latest done
+#6 unpacking to docker.io/library/kali-lab_dvwa:latest 0.0s done
+#6 DONE 0.1s
+Building juiceshop
+#1 [internal] load build definition from Dockerfile
+#1 sha256:3ab4e531cf24e28c7a3ce00689c961eb30a53233a2ce6a00acc1aa3b8165a8e4
+#1 transferring dockerfile: 249B done
+#1 DONE 0.0s
+
+#3 [auth] bkimminich/juice-shop:pull token for registry-1.docker.io
+#3 sha256:0cfdbadf1a2ec2c1fdd09381688e2e76320dcb759483fdb0131e915122170bf6
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/bkimminich/juice-shop:v13.3.0
+#2 sha256:4dd3260ae6d2a0c3131601857c34ab722099c16fdac7fe97df5bae5b202b8410
+#2 DONE 0.9s
+
+#4 [internal] load .dockerignore
+#4 sha256:6ae1be77f92efc139520a8c2d0964c3a2cdc4790da450aa5cb6b29ed6e293f39
+#4 transferring context: 113B done
+#4 DONE 0.0s
+
+#5 [1/1] FROM docker.io/bkimminich/juice-shop:v13.3.0@sha256:7c55eafcaf9beb97a4558215ea2272b15aa50478456dd3d49382b9f9ec51bc2c
+#5 sha256:32ad98816cd505d36f505a79fe12945479e8d4f7f1471fcdc08ff1e735baafd1
+#5 resolve docker.io/bkimminich/juice-shop:v13.3.0@sha256:7c55eafcaf9beb97a4558215ea2272b15aa50478456dd3d49382b9f9ec51bc2c 0.0s done
+#5 CACHED
+
+#6 exporting to image
+#6 sha256:76c015de2e846e231c7f78494993530128d222e441c0fc9d1d640f15ec002ec5
+#6 exporting layers done
+#6 exporting manifest sha256:29809a194c0422544b3c3aa82b3f2ff8328700619f4bde84b58fedd7e24baf3b done
+#6 exporting config sha256:407d397c1bb3224c283bec4805efb5f1ced48df1ae64c4dca46d78e9401de5ee done
+#6 naming to docker.io/library/kali-lab_juiceshop:latest done
+#6 unpacking to docker.io/library/kali-lab_juiceshop:latest 0.0s done
+#6 DONE 0.1s
+Building metasploitable2
+#1 [internal] load build definition from Dockerfile
+#1 sha256:8ad609c28708d85458035b1ae393ef1d3023118b8880b9831ba7ef58516ead48
+#1 transferring dockerfile: 1.76kB done
+#1 DONE 0.0s
+
+#3 [auth] library/ubuntu:pull token for registry-1.docker.io
+#3 sha256:76b23406ca71b299d01eb07b73c0217f8232d2feee5145c47f0d1a3c60133b3c
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:16.04
+#2 sha256:9c76e8fa8dfdaf594ab8960a983d4d42dd6431fd5b24c86e154fea33c653ec5c
+#2 DONE 0.8s
+
+#4 [internal] load .dockerignore
+#4 sha256:2f9d48eccab3469f408bc951d89e1c8ba89b2cb008a40c17a7799b08a521bab9
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#12 [1/7] FROM docker.io/library/ubuntu:16.04@sha256:1f1a2d56de1d604801a9671f301190704c25d604a416f59e03c04f5c6ffee0d6
+#12 sha256:2f98146d5965dc782bd23e07446c2c2ffb5099325e9829ec606e0df1f6194c4e
+#12 resolve docker.io/library/ubuntu:16.04@sha256:1f1a2d56de1d604801a9671f301190704c25d604a416f59e03c04f5c6ffee0d6 0.0s done
+#12 DONE 0.0s
+
+#9 [internal] load build context
+#9 sha256:0785061b0d4f4fb524542c7fbaf6f25a5d5ae2cdbbe70dd5c268cdbc0c6df068
+#9 transferring context: 326B done
+#9 DONE 0.0s
+
+#8 [4/7] COPY metasploitable-config/ /metasploitable-config/
+#8 sha256:e7b3c525220f82e0b7a68498ca6b638e6f078f56fb9e217d5f4461c284cb7748
+#8 CACHED
+
+#6 [6/7] COPY metasploitable-config/services-start.sh /services-start.sh
+#6 sha256:c1a4ba2da6ced3fa92f1a804072007f31ecfd5eca2d4c0ab85d9637fdc5a77ca
+#6 CACHED
+
+#10 [3/7] RUN mkdir -p /metasploitable-config
+#10 sha256:f1480cb3740a1ea84257b1ace18156ccb412e6d7bc1cf8687decce4e0f038dea
+#10 CACHED
+
+#7 [5/7] RUN     # SSH con contraseñas débiles     echo 'root:password' | chpasswd &&     echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config &&
+#7 sha256:871f3bd8eb9f39ccd033b6c93d4ac6ac11ed1de8b4129e9422e07ccf56dbec25
+#7 CACHED
+
+#11 [2/7] RUN apt-get update && apt-get install -y     openssh-server     vsftpd     apache2     postfix     dovecot-imapd     samba     bind9     mysql-server-5.7     postgresql     tomcat7     vnc4server     nfs-kernel-server     snmp     telnetd     tftp     php7.0     libapache2-mod-php7.0     && apt-get clean     && rm -rf /var/lib/apt/lists/*
+#11 sha256:7e946cc84e0126177b482ec8df0be9a8d475df630adc4b13d67d4ee518457bbb
+#11 CACHED
+
+#5 [7/7] RUN chmod +x /services-start.sh
+#5 sha256:19ca4ae8641aa4127eaf535c392c040fbc8b2df18e59e0b594043a7132a0c363
+#5 CACHED
+
+#13 exporting to image
+#13 sha256:d1b2a294aeb1a64623d5046eb2388e6aab3c6e25df54f22b421b761f8eb0b01f
+#13 exporting layers done
+#13 exporting manifest sha256:37a2aea7e87b31abcc37414bfb26f4752f57afbca6625cab004f744c3f269e2e done
+#13 exporting config sha256:d3b311c8d1111607b507f0893f6af993df59b57c528279c4496539b8b0b3c878 done
+#13 naming to docker.io/library/kali-lab_metasploitable2:latest done
+#13 unpacking to docker.io/library/kali-lab_metasploitable2:latest done
+#13 DONE 0.0s
+Building webgoat
+#1 [internal] load build definition from Dockerfile
+#1 sha256:a36ffc42bac645b09538e058ddb51d3b034b3948cf798df090e1c10dfcb13360
+#1 transferring dockerfile: 971B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/webgoat/goatandwolf:latest
+#2 sha256:589a05c2a0a1c9d06f12350f898eac7638f2b8a03ecd43f9bf3312af4d87ffd9
+#2 ...
+
+#3 [auth] webgoat/goatandwolf:pull token for registry-1.docker.io
+#3 sha256:31cd2434c90a09cbb1186baf06d1ef4b3bc9a198acff0d83d44ef8c44e82e530
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/webgoat/goatandwolf:latest
+#2 sha256:589a05c2a0a1c9d06f12350f898eac7638f2b8a03ecd43f9bf3312af4d87ffd9
+#2 DONE 0.9s
+
+#4 [internal] load .dockerignore
+#4 sha256:20c9a694e900c57b35a9f870dd03bbabeab198bc02c351c1516b9ad0ec561ad3
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#8 [1/4] FROM docker.io/webgoat/goatandwolf:latest@sha256:7b469c3153aed04298c1f978cfda8a7d5d3789d67577f7d57c7772e58a6de8a3
+#8 sha256:399ef0b5414d3974c87d06b3a8e059fd10d843c5260434d7669d13ec78e39866
+#8 resolve docker.io/webgoat/goatandwolf:latest@sha256:7b469c3153aed04298c1f978cfda8a7d5d3789d67577f7d57c7772e58a6de8a3 0.0s done
+#8 DONE 0.0s
+
+#6 [3/4] RUN chmod +x /home/webgoat/start.sh &&     chown webgoat:webgoat /home/webgoat/start.sh
+#6 sha256:2b4f5a0c4d673a84d1165826590efc3254114e8ce9e6bcbc3270d881b8de5bd4
+#6 CACHED
+
+#7 [2/4] RUN rm -rf /home/webgoat/.webgoat-* &&     mkdir -p /home/webgoat/.webgoat-8.0.0 /home/webgoat/.webwolf-8.0.0 &&     chown -R webgoat:webgoat /home/webgoat
+#7 sha256:4e6d27fe34ecad3a08e370ca96d5c7fb77e5f787b8e46fff6415905da4ddbc87
+#7 CACHED
+
+#5 [4/4] WORKDIR /home/webgoat
+#5 sha256:28a8b6d42917cea787d4bc85c2bbc236fc702ea7e65ac30503e9c4e6b96fd9e1
+#5 CACHED
+
+#9 exporting to image
+#9 sha256:e3880edbed2e8b24cb582e718b18b532c66c4a9985354b83046eb0fd3b3673cb
+#9 exporting layers 0.0s done
+#9 exporting manifest sha256:2da44da5c7106b3282d5bc3460027b487dae34fa453581f036ad45fae2a6808b done
+#9 exporting config sha256:ef2993be24bc0882f9d2941a9369967945a6063f347a7466acb8ad0feb471caf done
+#9 naming to docker.io/library/kali-lab_webgoat:latest done
+#9 unpacking to docker.io/library/kali-lab_webgoat:latest 0.0s done
+#9 DONE 0.1s
+Building pwnedsql
+#1 [internal] load build definition from Dockerfile
+#1 sha256:bd427717d24d39c2fbbb176c86ed4c997758092c0373f24109129cfe10094188
+#1 transferring dockerfile: 703B done
+#1 DONE 0.0s
+
+#3 [auth] library/mysql:pull token for registry-1.docker.io
+#3 sha256:92f7f20479b0d09bdae03d41f5bf62cff0ad7f7d9b518e4ae390515acf0da1c5
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/mysql:5.7.35
+#2 sha256:71728bac49b781a0adabdaf96d83c04d55a1e462bf73a3e63463e6e3873ca5a2
+#2 DONE 0.9s
+
+#4 [internal] load .dockerignore
+#4 sha256:9651979c48d85d9985ec8c25343a6efccfc36c49dc9bf9204259c1a0f22fe59b
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#7 [internal] load build context
+#7 sha256:016f6ef7ba62eed3ec5d0d221dbe4f90ab1bb5f2a661669933e92c9436aafa0d
+#7 transferring context: 1.04kB done
+#7 DONE 0.0s
+
+#9 [1/4] FROM docker.io/library/mysql:5.7.35@sha256:b8814059bbd9c80b78fe4b2b0b70cd70fe3772b3c5d8ee1edfa46791db3224f9
+#9 sha256:187146e695b9b82c6e3b4b6e905f48523e34efbe4cbaa58c025814e91654899f
+#9 resolve docker.io/library/mysql:5.7.35@sha256:b8814059bbd9c80b78fe4b2b0b70cd70fe3772b3c5d8ee1edfa46791db3224f9 0.0s done
+#9 CACHED
+
+#8 [2/4] RUN sed -i '/secure-auth/d' /etc/mysql/my.cnf &&     echo "[mysqld]\ndefault-authentication-plugin = mysql_native_password" >> /etc/mysql/conf.d/auth.cnf
+#8 sha256:d0478d52567016b4759bb49fc83dc1b7fcb54b5954cca9253126d530024c0b31
+#8 DONE 0.2s
+
+#6 [3/4] COPY vulnerable-db.sql /docker-entrypoint-initdb.d/
+#6 sha256:55aacf0f8e49bb8c8f92f6927df4b79fd6fcaacdb3196ad83ccfb72611049f08
+#6 DONE 0.0s
+
+#5 [4/4] COPY my.cnf /etc/mysql/conf.d/
+#5 sha256:3891ea1489d9103ad343a5e6f1f28c94a9447f8c19f66934e337787dfa130207
+#5 DONE 0.0s
+
+#10 exporting to image
+#10 sha256:5d7d92db22764a11263c1091bdaf189ea64cc78786b92656d6f2bd96baa55c1d
+#10 exporting layers
+#10 exporting layers 0.2s done
+#10 exporting manifest sha256:637c3ff82a968ba0ec499de21f54a21092045e268ff285c6ca63ba806ec25800 0.0s done
+#10 exporting config sha256:ff8c259c5478bf63e96ec6e9b00bbed7f1da6d429d26b3fc6e46f55fdae8ce21 0.0s done
+#10 naming to docker.io/library/kali-lab_pwnedsql:latest done
+#10 unpacking to docker.io/library/kali-lab_pwnedsql:latest 0.1s done
+#10 DONE 0.3s
+Creating network "kali-lab_pentest-net" with driver "bridge"
+Creating volume "kali-lab_webgoat_data" with local driver
+Creating volume "kali-lab_webwolf_data" with local driver
+Creating volume "kali-lab_pwnedsql_data" with local driver
+Creating pwnedsql ... 
+Creating metasploitable2 ... 
+Creating webgoat         ... 
+Creating juiceshop       ... 
+Creating dvwa            ... 
+Creating kali_lab        ... 
+Creating kali_lab        ... done
+Creating juiceshop       ... done
+Creating metasploitable2 ... done
+Creating dvwa            ... done
+Creating webgoat         ... done
+Creating pwnedsql        ... done
