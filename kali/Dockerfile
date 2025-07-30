@@ -25,6 +25,8 @@ RUN echo "Configurando Kali Linux ..." && \
     libssl-dev \
     default-jdk \
     wget \
+    nano \
+    ssh-client \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 

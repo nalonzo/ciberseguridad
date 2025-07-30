@@ -257,6 +257,8 @@ RUN echo "Configurando Kali Linux ..." && \\
     libssl-dev \\
     default-jdk \\
     wget \\
+    nano \\
+    ssh-client \\
     && apt-get clean \\
     && rm -rf /var/lib/apt/lists/*
 
@@ -451,6 +453,7 @@ RUN apt-get update && apt-get install -y \
     tftp \
     php7.0 \
     libapache2-mod-php7.0 \
+    upx \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
