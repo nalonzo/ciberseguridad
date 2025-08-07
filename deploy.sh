@@ -162,12 +162,12 @@ services:
           aliases:
             - metasploitable2
     ports:
-      - "21:21"
-      - "22:22"
+      - "221:21"
+      - "222:22"
       - "23:23"
-      - "80:80"
+      - "880:80"
       - "4445:445"
-      - "3306:3306"
+      - "3308:3306"
 
   webgoat:
      build: ./webgoat
@@ -259,6 +259,7 @@ RUN echo "Configurando Kali Linux ..." && \\
     wget \\
     nano \\
     ssh-client \\
+    wordlists  \\
     && apt-get clean \\
     && rm -rf /var/lib/apt/lists/*
 
@@ -270,10 +271,11 @@ RUN mkdir -p /opt/burpsuite && \\
     chmod +x /usr/local/bin/burpsuite
 
 RUN useradd -m -s /bin/bash pentester && \\
-    echo 'pentester:PasswordSeguro123!' | chpasswd && \\
+    echo 'pentester:PasswordSeguro' | chpasswd && \\
     chmod 700 /home/pentester && \\
     mkdir -p /home/pentester/lab_data && \\
-    chown pentester:pentester /home/pentester/lab_data
+    chown pentester:pentester /home/pentester/lab_data && \\
+    echo "mipassword" | passwd --stdin root
 
 WORKDIR /home/pentester
 USER pentester
@@ -300,6 +302,7 @@ echo 'export PS1="\[\e[1;32m\]\u@\h\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]\$ "' >> /ho
 echo -e "\n\033[1;33m[*] Información del sistema:\033[0m"
 echo -e "Usuario: \033[1;36mpentester\033[0m"
 echo -e "Contraseña: \033[1;36mPasswordSeguro123!\033[0m"
+echo -e "root: \033[1;36mipassword\033[0m"
 echo -e "Directorio persistente: \033[1;36m/home/pentester/lab_data\033[0m"
 
 # Iniciar shell interactiva

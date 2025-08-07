@@ -27,6 +27,7 @@ RUN echo "Configurando Kali Linux ..." && \
     wget \
     nano \
     ssh-client \
+    wordlists  \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -38,10 +39,11 @@ RUN mkdir -p /opt/burpsuite && \
     chmod +x /usr/local/bin/burpsuite
 
 RUN useradd -m -s /bin/bash pentester && \
-    echo 'pentester:PasswordSeguro123!' | chpasswd && \
+    echo 'pentester:PasswordSeguro' | chpasswd && \
     chmod 700 /home/pentester && \
     mkdir -p /home/pentester/lab_data && \
-    chown pentester:pentester /home/pentester/lab_data
+    chown pentester:pentester /home/pentester/lab_data && \
+    echo "mipassword" | passwd --stdin root
 
 WORKDIR /home/pentester
 USER pentester
