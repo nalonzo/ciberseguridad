@@ -23,9 +23,9 @@ RUN echo 'root:password' | chpasswd && echo 'PermitRootLogin yes' >> /etc/ssh/ss
     mv /metasploitable-config/vsftpd.conf /etc/vsftpd.conf && \
     mv /metasploitable-config/phpinfo.php /var/www/html/ && \
     chmod 755 /var/www/html/phpinfo.php && \
-    chmod 777 /tmp && chmod -R 777 /var/www && \
-    rm -rf /metasploitable-config && \
-    service mysql start && mysql < /metasploitable-config/mysql-config.sql
+    chmod 777 /tmp && chmod -R 777 /var/www/ && \
+    service mysql start && mysql < /metasploitable-config/mysql-config.sql && \
+    rm -rf /metasploitable-config
 
 # Exponer puertos
 EXPOSE 21 22 23 25 53 80 110 111 139 445 512 513 514 1524 2049 3306 5432 5900 6667
