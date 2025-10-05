@@ -104,8 +104,6 @@ echo -e "${YELLOW}[*] Verificando estructura de directorios...${NC}"
 # Función para crear docker-compose.yml
 create_docker_compose() {
     cat > "${BASE_DIR}/docker-compose.yml" <<EOF
-version: '3.8'
-
 services:
   kali:
     build: ./kali
@@ -116,7 +114,7 @@ services:
         aliases:
           - kali
     volumes:
-      - ${DATA_DIR}:/home/pentester/lab_data
+      - ./kali_lab_data:/home/pentester/lab_data
     environment:
       - TZ=America/Mexico_City
     deploy:
@@ -222,8 +220,6 @@ volumes:
     driver: local
   pwnedsql_data:
     driver: local
-
-
 EOF
     echo -e "${GREEN}[+] Archivo docker-compose.yml creado${NC}"
 }
