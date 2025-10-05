@@ -1,5 +1,5 @@
 #!/bin/bash
-#Este script se utilizó para crear la estrucura básica de carpetas y archivos Dockerfile y docker-compose.yml
+#Este script se utilizó para crear la estructura básica de carpetas y archivos Dockerfile y docker-compose.yml
 #No obstante, ya están definidas en los repositorios, por lo que no es necesaria su ejecución.
 exit 0;
 # =============================================
