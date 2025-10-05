@@ -13,15 +13,17 @@ Contenedores para implementar un laboratorio de ciberseguridad
 
 ## Comandos Útiles
 
-- Ver logs: `docker-compose logs -f`
+Ver logs:
+`docker-compose logs -f`
+
 #ver los contenedores
-docker ps
+`docker ps`
 
 #Ver las imágenes
-docker image ls
+`docker image ls`
 
 #Conectarse a kali_lab
-docker exec -it kali_lab /bin/bash
+`docker exec -it kali_lab /bin/bash`
 
 #Conectarsea metsploitable2
-docker exec -it metasploitable2 /bin/bash
+`docker exec -it metasploitable2 /bin/bash`
